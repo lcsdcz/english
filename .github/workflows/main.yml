@@ -26,24 +26,10 @@ jobs:
       
     - name: Replace API configuration
       run: |
-        # Install replace-in-file globally
-        npm install -g replace-in-file
-        
-        # Replace placeholders with environment variables
-        replace-in-file \
-          --files js/config.js \
-          --from "{{OPENAI_API_KEY}}" \
-          --to "${{ secrets.OPENAI_API_KEY }}"
-        
-        replace-in-file \
-          --files js/config.js \
-          --from "{{OPENAI_API_URL}}" \
-          --to "${{ secrets.OPENAI_API_URL }}"
-        
-        replace-in-file \
-          --files js/config.js \
-          --from "{{OPENAI_MODEL}}" \
-          --to "${{ secrets.OPENAI_MODEL }}"
+        # Replace placeholders with environment variables using sed
+        sed -i 's/{{OPENAI_API_KEY}}/${{ secrets.OPENAI_API_KEY }}/g' js/config.js
+        sed -i 's/{{OPENAI_API_URL}}/${{ secrets.OPENAI_API_URL }}/g' js/config.js
+        sed -i 's/{{OPENAI_MODEL}}/${{ secrets.OPENAI_MODEL }}/g' js/config.js
         
         echo "API configuration replacement completed"
         
