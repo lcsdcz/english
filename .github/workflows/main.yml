@@ -32,18 +32,18 @@ jobs:
         # Replace placeholders with environment variables
         replace-in-file \
           --files js/config.js \
-          --from '{{OPENAI_API_KEY}}' \
-          --to '${{ secrets.OPENAI_API_KEY }}'
+          --from "{{OPENAI_API_KEY}}" \
+          --to "${{ secrets.OPENAI_API_KEY }}"
         
         replace-in-file \
           --files js/config.js \
-          --from '{{OPENAI_API_URL}}' \
-          --to '${{ secrets.OPENAI_API_URL }}'
+          --from "{{OPENAI_API_URL}}" \
+          --to "${{ secrets.OPENAI_API_URL }}"
         
         replace-in-file \
           --files js/config.js \
-          --from '{{OPENAI_MODEL}}' \
-          --to '${{ secrets.OPENAI_MODEL }}'
+          --from "{{OPENAI_MODEL}}" \
+          --to "${{ secrets.OPENAI_MODEL }}"
         
         echo "API configuration replacement completed"
         
